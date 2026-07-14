@@ -2,18 +2,19 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, Star, Menu, X } from 'lucide-react'
+import { Github, Star, Menu, X, ArrowUpRight, Heart } from 'lucide-react'
 import styles from './page.module.css'
 
 const NAV_ITEMS = [
   { label: 'Components', href: '#components' },
-  { label: 'Sponsorships', href: '#' },
+  { label: 'Sponsorships', href: 'https://github.com/sponsors/sandeepannandi', external: true },
 ]
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'web' | 'mobile'>('web')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [copiedEmail, setCopiedEmail] = useState(false)
 
   return (
     <div className={styles.page}>
@@ -37,6 +38,8 @@ export default function Home() {
                 key={item.label}
                 href={item.href}
                 className={styles.navLink}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
                 whileHover={{ y: 0 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
@@ -86,6 +89,8 @@ export default function Home() {
                   key={item.label}
                   href={item.href}
                   className={styles.mobileNavLink}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span>{item.label}</span>
@@ -224,35 +229,84 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className={styles.footer}>
+      <motion.footer
+        className={styles.footer}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className={styles.footerInner}>
           <div className={styles.footerBrand}>
             <span className={styles.footerLogo}>SandUI</span>
             <p className={styles.footerTagline}>
               The motion toolkit for Next.js &amp; React Native.
+              <br />
+              Free and open source.
             </p>
+            
           </div>
           <div className={styles.footerLinks}>
             <div className={styles.footerCol}>
               <h4 className={styles.footerColTitle}>Product</h4>
-              <a href="#" className={styles.footerLink}>Components</a>
-              <a href="#" className={styles.footerLink}>Sponsorships</a>
-              <a href="#" className={styles.footerLink}>GitHub</a>
+              <a href="#components" className={styles.footerLink}>
+                <span className={styles.footerLinkText}>Components</span>
+              </a>
+              <motion.a
+                href="https://github.com/sponsors/sandeepannandi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerLink}
+              >
+                <span className={styles.footerLinkText}>Sponsorships</span>
+                <ArrowUpRight size={12} className={styles.linkIcon} />
+              </motion.a>
+              <motion.a
+                href="https://github.com/sandeepannandi/Design-Experiments"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerLink}
+              >
+                <span className={styles.footerLinkText}>GitHub</span>
+                <ArrowUpRight size={12} className={styles.linkIcon} />
+              </motion.a>
             </div>
             <div className={styles.footerCol}>
               <h4 className={styles.footerColTitle}>Connect</h4>
-              <a href="mailto:hello@sandui.dev" className={styles.footerLink}>Email</a>
-              <a href="#" className={styles.footerLink}>Twitter / X</a>
+              <motion.button
+                type="button"
+                className={styles.footerLink}
+                whileHover={{ x: 2 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                onClick={() => {
+                  navigator.clipboard.writeText('sandipannandi9825@gmail.com')
+                  setCopiedEmail(true)
+                  setTimeout(() => setCopiedEmail(false), 2000)
+                }}
+              >
+                <span className={styles.footerLinkText}>{copiedEmail ? 'Copied!' : 'Email'}</span>
+              </motion.button>
+              <motion.a
+                href="https://x.com/SandeepanNandi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerLink}
+              >
+                <span className={styles.footerLinkText}>Twitter / X</span>
+                <ArrowUpRight size={12} className={styles.linkIcon} />
+              </motion.a>
             </div>
           </div>
         </div>
         <div className={styles.footerBottom}>
-          <p>&copy; {new Date().getFullYear()} SandUI. Free and open source.</p>
+          <p>
+            &copy; {new Date().getFullYear()} SandUI.
+          </p>
           <div className={styles.footerBottomLinks}>
-            <a href="#">License</a>
+            <a target="_blank" rel="noopener noreferrer">MIT License</a>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   )
 }
