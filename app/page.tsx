@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, Star, Smartphone, Monitor, Menu, X, Calendar, Mail } from 'lucide-react'
+import { Github, Star, Menu, X, Calendar, Mail } from 'lucide-react'
 import styles from './page.module.css'
 
 const NAV_ITEMS = [
@@ -25,6 +25,7 @@ export default function Home() {
       >
         <div className={styles.headerInner}>
           <div className={styles.logo}>
+            <img src="/icon.png" alt="" className={styles.logoIcon} />
             <span className={styles.logoText}>SandUI</span>
           </div>
 
@@ -42,13 +43,15 @@ export default function Home() {
               </motion.a>
             ))}
             <motion.a
-              href="#"
+              href="https://github.com/sandeepannandi/Design-Experiments"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.navGithub}
               whileHover={{ y: 0 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               <Github size={16} />
-              <span>Star</span>
+              <span>GitHub</span>
               <span className={styles.githubBadge}>
                 <Star size={12} />
                 <span>17</span>
@@ -88,9 +91,9 @@ export default function Home() {
                 </a>
               ))}
               <div className={styles.mobileNavDivider} />
-              <a href="#" className={styles.mobileNavGithub}>
+              <a href="https://github.com/sandeepannandi/Design-Experiments" target="_blank" rel="noopener noreferrer" className={styles.mobileNavGithub}>
                 <Github size={16} />
-                <span>Star on GitHub</span>
+                <span>GitHub</span>
                 <span className={styles.mobileGithubBadge}>
                   <Star size={12} />
                   <span>17</span>
@@ -117,21 +120,20 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <span className={styles.badgeDot} />
               Free & Open Source
             </motion.div>
 
             <h1 className={styles.heroTitle}>
               The motion toolkit for{' '}
-              <span className={styles.heroHighlight}>Next.js</span>
+              <span>Next.js</span>
               {' '}&{' '}
-              <span className={styles.heroHighlight}>React Native</span>
+              <span>React Native</span>
             </h1>
 
             <p className={styles.heroSubtitle}>
               Copy-paste animated components built on{' '}
               <strong>Framer Motion</strong> and <strong>Animated</strong>.
-              Free and open source.
+              <br />Free and open source.
             </p>
 
             {/* Platform Toggle */}
@@ -141,7 +143,6 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <span className={styles.toggleLabel}>Choose your platform</span>
               <div className={styles.toggle}>
                 <motion.div
                   className={styles.toggleBg}
@@ -152,15 +153,13 @@ export default function Home() {
                   className={`${styles.toggleBtn} ${activeTab === 'web' ? styles.toggleBtnActive : ''}`}
                   onClick={() => setActiveTab('web')}
                 >
-                  <Monitor size={18} />
-                  <span>Web</span>
+                  Web
                 </button>
                 <button
                   className={`${styles.toggleBtn} ${activeTab === 'mobile' ? styles.toggleBtnActive : ''}`}
                   onClick={() => setActiveTab('mobile')}
                 >
-                  <Smartphone size={18} />
-                  <span>Mobile</span>
+                  Mobile
                 </button>
               </div>
             </motion.div>

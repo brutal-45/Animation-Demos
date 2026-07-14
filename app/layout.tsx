@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'SandUI | Motion Toolkit for Next.js & React Native',
   description:
     'Copy-paste animated components built on Framer Motion and Animated. Free and open source.',
+  icons: {
+    icon: '/icon.png',
+  },
 }
 
 export default function RootLayout({
