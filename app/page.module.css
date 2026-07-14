@@ -294,10 +294,9 @@
 /* ── Work With Me ───────────────────────────────────── */
 
 .workSection {
-  padding: 100px 24px;
+  padding: 120px 24px 140px;
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.02);
 }
 
 .workInner {
@@ -306,20 +305,43 @@
   text-align: center;
 }
 
+.workBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
+  font-size: 13px;
+  font-weight: 600;
+  color: #525252;
+  letter-spacing: 0.3px;
+  margin-bottom: 28px;
+}
+
 .workTitle {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(30px, 4.5vw, 44px);
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -1.2px;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
   color: #000000;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.workHighlight {
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .workDesc {
-  font-size: clamp(16px, 2vw, 18px);
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.5;
   color: #525252;
-  margin-bottom: 40px;
+  max-width: 540px;
+  margin: 0 auto 44px;
 }
 
 .workButtons {
@@ -333,10 +355,9 @@
 .workBtnPrimary {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
+  padding: 10px 22px;
   border-radius: 9999px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
   background: #000000;
@@ -347,16 +368,15 @@
 }
 
 .workBtnPrimary:hover {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .workBtnSecondary {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
+  padding: 10px 22px;
   border-radius: 9999px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #000000;
   background: transparent;
@@ -364,11 +384,11 @@
   cursor: pointer;
   transition: border-color 0.2s ease, background 0.2s ease;
   text-decoration: none;
+  font-family: inherit;
 }
 
 .workBtnSecondary:hover {
-  border-color: #000000;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 /* ── Footer ─────────────────────────────────────────── */

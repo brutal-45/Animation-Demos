@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, Star, Menu, X, Calendar, Mail } from 'lucide-react'
+import { Github, Star, Menu, X } from 'lucide-react'
 import styles from './page.module.css'
 
 const NAV_ITEMS = [
@@ -13,6 +13,7 @@ const NAV_ITEMS = [
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'web' | 'mobile'>('web')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   return (
     <div className={styles.page}>
@@ -175,31 +176,48 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className={styles.workTitle}>Work with me</h2>
+            <motion.div
+              className={styles.workBadge}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Work with me
+            </motion.div>
+
+            <h2 className={styles.workTitle}>
+              Let's build something
+              <br />
+              <span className={styles.workHighlight}>great together</span>
+            </h2>
+
             <p className={styles.workDesc}>
-              Need components built for your product?<br />
-              Custom motion components and frontend systems, built to spec.{' '}
-              Book a call or drop a line, whichever&apos;s easier.
+              I design and build custom motion components, design systems,
+              and frontend architecture for your project. Polished,
+              production-ready UI to your spec, on your timeline.
             </p>
+
             <div className={styles.workButtons}>
               <motion.a
-                href="#"
+                href="https://cal.com/sandeepannandi"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.workBtnPrimary}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
-                <Calendar size={18} />
                 Book a call
               </motion.a>
-              <motion.a
-                href="mailto:hello@sandui.dev"
+              <motion.button
+                type="button"
                 className={styles.workBtnSecondary}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  navigator.clipboard.writeText('sandipannandi9825@gmail.com')
+                  setCopied(true)
+                  setTimeout(() => setCopied(false), 2000)
+                }}
               >
-                <Mail size={18} />
-                Email me
-              </motion.a>
+                {copied ? 'Copied!' : 'Email me'}
+              </motion.button>
             </div>
           </motion.div>
         </section>
